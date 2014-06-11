@@ -14,7 +14,7 @@
 
 @end
 
-@implementation RFToolbarButton
+@implementation RFToolbarButton 
 
 + (instancetype)buttonWithTitle:(NSString *)title {
     return [[self alloc] initWithTitle:title];
@@ -38,8 +38,8 @@
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14.f];
 
         self.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.0];
-        self.textColor = [UIColor colorWithWhite:0.500 alpha:1.0];
-        self.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+        _textColor = [UIColor colorWithWhite:0.500 alpha:1.0];
+        _borderColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     }
     return self;
 }

@@ -34,8 +34,9 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self addSubview:[self createInputAccessoryView]];
     
-    self.toolbarBackgroundColor = [UIColor colorWithWhite:0.973 alpha:1.0];
-    self.toolbarBorderColor = [UIColor colorWithWhite:0.678 alpha:1.0];
+    _toolbarBackgroundColor = [UIColor colorWithWhite:0.973 alpha:1.0];
+    _toolbarBorderColor = [UIColor colorWithWhite:0.678 alpha:1.0];
+    [self updateTheme];
 }
 
 + (instancetype)toolbarViewWithButtons:(NSArray *)buttons {
@@ -164,7 +165,7 @@
     if (!_canUseVisualEffectView)
 #endif
     {
-        _toolbarView.backgroundColor = self.toolbarBackgroundColor;
+        _toolbarView.backgroundColor = _toolbarBackgroundColor;
     }
     
     _topBorder.backgroundColor = self.toolbarBorderColor.CGColor;
