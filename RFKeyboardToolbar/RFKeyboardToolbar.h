@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RFKeyboardToolbar : UIView
+@interface RFKeyboardToolbar : UIView <UIAppearanceContainer>
 
 + (instancetype)toolbarViewWithButtons:(NSArray *)buttons;
 

@@ -9,7 +9,7 @@
 
 typedef void (^eventHandlerBlock)();
 
-@interface RFToolbarButton : UIButton
+@interface RFToolbarButton : UIButton <UIAppearanceContainer>
 
 + (instancetype)buttonWithTitle:(NSString *)title;
 
