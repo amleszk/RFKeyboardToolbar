@@ -11,4 +11,7 @@
 
 + (instancetype)toolbarViewWithButtons:(NSArray *)buttons;
 
+@property (nonatomic,strong) UIColor *toolbarBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic,strong) UIColor *toolbarBorderColor UI_APPEARANCE_SELECTOR;
+
 @end

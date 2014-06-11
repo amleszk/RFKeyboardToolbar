@@ -31,17 +31,15 @@
     
     self = [super initWithFrame:CGRectMake(0, 0, sizeOfText.width + 18.104, sizeOfText.height + 10.298)];
     if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.0];
-        
         self.layer.cornerRadius = 3.0f;
         self.layer.borderWidth = 1.0f;
-        self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
         
         [self setTitle:self.title forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor colorWithWhite:0.500 alpha:1.0] forState:UIControlStateNormal];
-        
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14.f];
-        self.titleLabel.textColor = [UIColor colorWithWhite:0.500 alpha:1.0];
+
+        self.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.0];
+        self.textColor = [UIColor colorWithWhite:0.500 alpha:1.0];
+        self.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     }
     return self;
 }
@@ -52,7 +50,32 @@
 }
 
 - (void)buttonPressed {
-    self.buttonPressBlock();
+    if (self.buttonPressBlock) {
+        self.buttonPressBlock();
+    }
+}
+
+#pragma mark - Appearance
+
+-(void) setBorderColor:(UIColor *)borderColor {
+    _borderColor = borderColor;
+    [self updateTheme];
+}
+
+-(void) setTextColor:(UIColor *)textColor {
+    _textColor = textColor;
+    [self updateTheme];
+}
+
+-(void) setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+    [self updateTheme];
+}
+
+-(void) updateTheme {
+    self.layer.borderColor = _borderColor.CGColor;
+    [self setTitleColor:_textColor forState:UIControlStateNormal];
+    self.titleLabel.textColor = _textColor;
 }
 
 @end

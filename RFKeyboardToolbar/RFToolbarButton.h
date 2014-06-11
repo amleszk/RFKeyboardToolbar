@@ -15,4 +15,7 @@ typedef void (^eventHandlerBlock)();
 
 - (void)addEventHandler:(eventHandlerBlock)eventHandler forControlEvents:(UIControlEvents)controlEvent;
 
+@property (nonatomic,strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic,strong) UIColor *textColor UI_APPEARANCE_SELECTOR;
+
 @end

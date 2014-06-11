@@ -28,10 +28,15 @@
     if (self) {
         _buttonsToAdd = buttons;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        [self addSubview:[self inputAccessoryView]];
+        [self addSubview:[self createInputAccessoryView]];
+
+        self.toolbarBackgroundColor = [UIColor colorWithWhite:0.973 alpha:1.0];
+        self.toolbarBorderColor = [UIColor colorWithWhite:0.678 alpha:1.0];
     }
     return self;
 }
+
+#pragma mark - UIView overrides
 
 - (void)layoutSubviews {
     CGRect frame = _toolbarView.bounds;
@@ -40,22 +45,22 @@
     _topBorder.frame = frame;
 }
 
-- (UIView*)inputAccessoryView {
+#pragma mark - UIView creation
+
+- (UIView*)createInputAccessoryView {
     _toolbarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
-    _toolbarView.backgroundColor = [UIColor colorWithWhite:0.973 alpha:1.0];
     _toolbarView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     
     _topBorder = [CALayer layer];
     _topBorder.frame = CGRectMake(0.0f, 0.0f, self.bounds.size.width, 0.5f);
-    _topBorder.backgroundColor = [UIColor colorWithWhite:0.678 alpha:1.0].CGColor;
     
     [_toolbarView.layer addSublayer:_topBorder];
-    [_toolbarView addSubview:[self fakeToolbar]];
+    [_toolbarView addSubview:[self createToolbarScrollView]];
     
     return _toolbarView;
 }
 
-- (UIScrollView*)fakeToolbar {
+- (UIScrollView*)createToolbarScrollView {
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
     _scrollView.backgroundColor = [UIColor clearColor];
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -82,6 +87,23 @@
     _scrollView.contentSize = contentSize;
     
     return _scrollView;
+}
+
+#pragma mark Appearance
+
+-(void) setToolbarBackgroundColor:(UIColor *)toolbarBackgroundColor {
+    _toolbarBackgroundColor = toolbarBackgroundColor;
+    [self updateTheme];
+}
+
+-(void) setToolbarBorderColor:(UIColor *)toolbarBorderColor {
+    _toolbarBorderColor = toolbarBorderColor;
+    [self updateTheme];
+}
+
+-(void) updateTheme {
+    _toolbarView.backgroundColor = self.toolbarBackgroundColor;
+    _topBorder.backgroundColor = self.toolbarBorderColor.CGColor;
 }
 
 @end
