@@ -16,6 +16,9 @@
 
 @implementation RFToolbarButton 
 
+@synthesize textColor=_textColorInternal;
+@synthesize buttonBorderColor=_buttonBorderColorInternal;
+
 + (instancetype)buttonWithTitle:(NSString *)title {
     return [[self alloc] initWithTitle:title];
 }
@@ -38,8 +41,6 @@
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14.f];
 
         self.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.0];
-        _textColor = [UIColor colorWithWhite:0.500 alpha:1.0];
-        _borderColor = [UIColor colorWithWhite:0.8 alpha:1.0];
     }
     return self;
 }
@@ -55,27 +56,45 @@
     }
 }
 
+#pragma mark - UIView overrides
+
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    if (newWindow) {
+        [self updateTheme];
+    }
+}
+
 #pragma mark - Appearance
 
--(void) setBorderColor:(UIColor *)borderColor {
-    _borderColor = borderColor;
-    [self updateTheme];
+- (UIColor *)buttonBorderColor {
+    if(_buttonBorderColorInternal == nil) {
+        _buttonBorderColorInternal = [[[self class] appearance] buttonBorderColor];
+    }
+    
+    if(_buttonBorderColorInternal != nil) {
+        return _buttonBorderColorInternal;
+    }
+    
+    return [UIColor colorWithWhite:0.8 alpha:1.0];
 }
 
--(void) setTextColor:(UIColor *)textColor {
-    _textColor = textColor;
-    [self updateTheme];
+- (UIColor *)textColor {
+    if(_textColorInternal == nil) {
+        _textColorInternal = [[[self class] appearance] textColor];
+    }
+    
+    if(_textColorInternal != nil) {
+        return _textColorInternal;
+    }
+    
+    return [UIColor colorWithWhite:0.500 alpha:1.0];
 }
 
--(void) setBackgroundColor:(UIColor *)backgroundColor {
-    [super setBackgroundColor:backgroundColor];
-    [self updateTheme];
-}
 
 -(void) updateTheme {
-    self.layer.borderColor = _borderColor.CGColor;
-    [self setTitleColor:_textColor forState:UIControlStateNormal];
-    self.titleLabel.textColor = _textColor;
+    self.layer.borderColor = self.buttonBorderColor.CGColor;
+    [self setTitleColor:self.textColor forState:UIControlStateNormal];
+    self.titleLabel.textColor = self.textColor;
 }
 
 @end

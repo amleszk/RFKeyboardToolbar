@@ -26,6 +26,9 @@
 
 @implementation RFKeyboardToolbar
 
+@synthesize toolbarBackgroundColor = _toolbarBackgroundColorInternal;
+@synthesize toolbarBorderColor = _toolbarBorderColorInternal;
+
 -(void) commonInitWithButtons:(NSArray *)buttons {
 #if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
     _canUseVisualEffectView = (NSClassFromString (@"UIVisualEffectView") != nil);
@@ -34,8 +37,6 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self addSubview:[self createInputAccessoryView]];
     
-    _toolbarBackgroundColor = [UIColor colorWithWhite:0.973 alpha:1.0];
-    _toolbarBorderColor = [UIColor colorWithWhite:0.678 alpha:1.0];
     [self updateTheme];
 }
 
@@ -80,6 +81,12 @@
     frame.size.height = 0.5f;
     
     _topBorder.frame = frame;
+}
+
+-(void) willMoveToWindow:(UIWindow *)newWindow {
+    if (newWindow) {
+        [self updateTheme];
+    }
 }
 
 #pragma mark - UIView creation
@@ -140,15 +147,30 @@
 
 #pragma mark Appearance
 
--(void) setToolbarBackgroundColor:(UIColor *)toolbarBackgroundColor {
-    _toolbarBackgroundColor = toolbarBackgroundColor;
-    [self updateTheme];
+- (UIColor *)toolbarBorderColor {
+    if(_toolbarBorderColorInternal == nil) {
+        _toolbarBorderColorInternal = [[[self class] appearance] toolbarBorderColor];
+    }
+    
+    if(_toolbarBorderColorInternal != nil) {
+        return _toolbarBorderColorInternal;
+    }
+    
+    return [UIColor colorWithWhite:0.678 alpha:1.0];
 }
 
--(void) setToolbarBorderColor:(UIColor *)toolbarBorderColor {
-    _toolbarBorderColor = toolbarBorderColor;
-    [self updateTheme];
+- (UIColor *)toolbarBackgroundColor {
+    if(_toolbarBackgroundColorInternal == nil) {
+        _toolbarBackgroundColorInternal = [[[self class] appearance] toolbarBackgroundColor];
+    }
+    
+    if(_toolbarBackgroundColorInternal != nil) {
+        return _toolbarBackgroundColorInternal;
+    }
+    
+    return [UIColor colorWithWhite:0.973 alpha:1.0];
 }
+
 
 #if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
 -(void) setBlurEffectStyle:(UIBlurEffectStyle)blurEffectStyle {
@@ -165,7 +187,7 @@
     if (!_canUseVisualEffectView)
 #endif
     {
-        _toolbarView.backgroundColor = _toolbarBackgroundColor;
+        _toolbarView.backgroundColor = self.toolbarBackgroundColor;
     }
     
     _topBorder.backgroundColor = self.toolbarBorderColor.CGColor;

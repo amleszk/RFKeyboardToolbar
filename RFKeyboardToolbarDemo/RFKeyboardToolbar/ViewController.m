@@ -52,7 +52,7 @@
     [[RFKeyboardToolbar appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
 #endif
     
-    [[RFToolbarButton appearance] setBorderColor:[UIColor purpleColor]];
+    [[RFToolbarButton appearance] setButtonBorderColor:[UIColor purpleColor]];
     [[RFToolbarButton appearance] setBackgroundColor:[UIColor greenColor]];
     [[RFToolbarButton appearance] setTextColor:[UIColor redColor]];
     
