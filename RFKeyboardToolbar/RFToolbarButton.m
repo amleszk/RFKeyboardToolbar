@@ -14,7 +14,7 @@
 
 @end
 
-@implementation RFToolbarButton 
+@implementation RFToolbarButton
 
 @synthesize textColor=_textColorInternal;
 @synthesize buttonBorderColor=_buttonBorderColorInternal;
@@ -39,8 +39,11 @@
         
         [self setTitle:self.title forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14.f];
-
-        self.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.0];
+        [self setTitleColor:self.textColor forState:UIControlStateNormal];
+        
+        self.backgroundColor = [self apperanceBackgroundColor];
+        self.layer.borderColor = self.buttonBorderColor.CGColor;
+        self.titleLabel.textColor = self.textColor;
     }
     return self;
 }
@@ -53,14 +56,6 @@
 - (void)buttonPressed {
     if (self.buttonPressBlock) {
         self.buttonPressBlock();
-    }
-}
-
-#pragma mark - UIView overrides
-
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    if (newWindow) {
-        [self updateTheme];
     }
 }
 
@@ -90,11 +85,14 @@
     return [UIColor colorWithWhite:0.500 alpha:1.0];
 }
 
-
--(void) updateTheme {
-    self.layer.borderColor = self.buttonBorderColor.CGColor;
-    [self setTitleColor:self.textColor forState:UIControlStateNormal];
-    self.titleLabel.textColor = self.textColor;
+- (UIColor *)apperanceBackgroundColor {
+    UIColor *apperanceBackgroundColor = [[[self class] appearance] backgroundColor];
+    
+    if(apperanceBackgroundColor != nil) {
+        return apperanceBackgroundColor;
+    }
+    
+    return [UIColor colorWithWhite:0.902 alpha:1.0];
 }
 
 @end
