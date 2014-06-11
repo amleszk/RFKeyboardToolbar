@@ -48,6 +48,10 @@
 {
     [[RFKeyboardToolbar appearance] setToolbarBorderColor:[UIColor redColor]];
     [[RFKeyboardToolbar appearance] setToolbarBackgroundColor:[UIColor blueColor]];
+#if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+    [[RFKeyboardToolbar appearance] setBlurEffectStyle:UIBlurEffectStyleDark];
+#endif
+    
     [[RFToolbarButton appearance] setBorderColor:[UIColor purpleColor]];
     [[RFToolbarButton appearance] setBackgroundColor:[UIColor greenColor]];
     [[RFToolbarButton appearance] setTextColor:[UIColor redColor]];
