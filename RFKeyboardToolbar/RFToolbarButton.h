@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^eventHandlerBlock)();
+typedef void (^eventHandlerBlock)(id sender);
 
 @interface RFToolbarButton : UIButton <UIAppearanceContainer>
 

@@ -55,7 +55,7 @@
 
 - (void)buttonPressed {
     if (self.buttonPressBlock) {
-        self.buttonPressBlock();
+        self.buttonPressBlock(self);
     }
 }
 
