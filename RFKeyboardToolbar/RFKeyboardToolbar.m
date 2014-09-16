@@ -84,6 +84,7 @@
 }
 
 -(void) willMoveToWindow:(UIWindow *)newWindow {
+    [super willMoveToWindow:newWindow];
     if (newWindow) {
         [self updateTheme];
     }
@@ -100,8 +101,10 @@
     [_toolbarView.layer addSublayer:_topBorder];
     [_toolbarView addSubview:[self createToolbarScrollView]];
 
+    [self updateTheme];
+    
 #if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
-    if (_canUseVisualEffectView) {
+    if ([_useBlurEffect boolValue] && _canUseVisualEffectView) {
         _toolbarVisualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:_blurEffectStyle]];
         _toolbarVisualEffectView.frame = toolbarViewFrame;
         _toolbarVisualEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -174,24 +177,26 @@
 
 #if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
 -(void) setBlurEffectStyle:(UIBlurEffectStyle)blurEffectStyle {
-    if (_canUseVisualEffectView) {
-        _blurEffectStyle = blurEffectStyle;
-        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        [self addSubview:[self createInputAccessoryView]];
-    }
+    _blurEffectStyle = blurEffectStyle;
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addSubview:[self createInputAccessoryView]];
 }
+
+-(void) setUseBlurEffect:(NSNumber *)useBlurEffect {
+    _useBlurEffect = useBlurEffect;
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self addSubview:[self createInputAccessoryView]];
+}
+
 #endif
 
 -(void) updateTheme {
-#if defined(__IPHONE_8_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
-    if (!_canUseVisualEffectView)
-#endif
+    if (![_useBlurEffect boolValue] || !_canUseVisualEffectView)
     {
         _toolbarView.backgroundColor = self.toolbarBackgroundColor;
     }
     
     _topBorder.backgroundColor = self.toolbarBorderColor.CGColor;
-    
 }
 
 @end

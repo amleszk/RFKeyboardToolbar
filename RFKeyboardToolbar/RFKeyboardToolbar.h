@@ -21,6 +21,10 @@
 + (instancetype)toolbarViewWithBlurEffectStyle:(UIBlurEffectStyle)blurEffectStyle buttons:(NSArray *)buttons;
 
 @property (nonatomic) UIBlurEffectStyle blurEffectStyle UI_APPEARANCE_SELECTOR;
+
 #endif
+
+@property (nonatomic) NSNumber *useBlurEffect UI_APPEARANCE_SELECTOR;
+
 
 @end
