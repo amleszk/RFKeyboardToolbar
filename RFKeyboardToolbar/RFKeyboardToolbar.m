@@ -125,6 +125,7 @@
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.contentInset = UIEdgeInsetsMake(6.0f, 0.0f, 8.0f, 6.0f);
+    _scrollView.canCancelContentTouches = YES;
     
     NSUInteger index = 0;
     NSUInteger originX = 8;
