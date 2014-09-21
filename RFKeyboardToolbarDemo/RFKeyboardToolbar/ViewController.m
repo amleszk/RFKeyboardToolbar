@@ -25,14 +25,18 @@
     self.title = @"RFKeyboardToolbar";
     
     _textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+
+    NSMutableArray *buttons = [NSMutableArray array];
+    for (int i=0; i<15; i++) {
+        RFToolbarButton *exampleButton = [RFToolbarButton buttonWithTitle:@"Example"];
+        
+        [exampleButton addEventHandler:^(id sender){
+            [_textView insertText:@"You pressed a button!"];
+        } forControlEvents:UIControlEventTouchUpInside];
+        [buttons addObject:exampleButton];
+    }
     
-    RFToolbarButton *exampleButton = [RFToolbarButton buttonWithTitle:@"Example"];
-    
-    [exampleButton addEventHandler:^{
-        [_textView insertText:@"You pressed a button!"];
-    } forControlEvents:UIControlEventTouchUpInside];
-    
-    _textView.inputAccessoryView = [RFKeyboardToolbar toolbarViewWithButtons:@[exampleButton]];
+    _textView.inputAccessoryView = [RFKeyboardToolbar toolbarViewWithButtons:buttons];
         
     [self.view addSubview:_textView];
     

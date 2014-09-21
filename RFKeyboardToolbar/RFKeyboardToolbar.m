@@ -7,6 +7,7 @@
 
 #import "RFKeyboardToolbar.h"
 #import "RFToolbarButton.h"
+#import "RFToolbarScrollView.h"
 
 @interface RFKeyboardToolbar ()
 
@@ -17,7 +18,7 @@
 
 @property (nonatomic,strong) UIView *toolbarView;
 
-@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,strong) RFToolbarScrollView *scrollView;
 @property (nonatomic,strong) CALayer *topBorder;
 @property (nonatomic,strong) NSArray *buttonsToAdd;
 
@@ -120,12 +121,7 @@
 }
 
 - (UIScrollView*)createToolbarScrollView {
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
-    _scrollView.backgroundColor = [UIColor clearColor];
-    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _scrollView.showsHorizontalScrollIndicator = NO;
-    _scrollView.contentInset = UIEdgeInsetsMake(6.0f, 0.0f, 8.0f, 6.0f);
-    _scrollView.canCancelContentTouches = YES;
+    _scrollView = [[RFToolbarScrollView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
     
     NSUInteger index = 0;
     NSUInteger originX = 8;

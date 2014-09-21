@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61B30A9A19CF827E0053C0D1 /* RFToolbarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B30A9919CF827E0053C0D1 /* RFToolbarScrollView.m */; };
 		CEEF0E23184E157600B7DEDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF0E22184E157600B7DEDF /* Foundation.framework */; };
 		CEEF0E25184E157600B7DEDF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF0E24184E157600B7DEDF /* CoreGraphics.framework */; };
 		CEEF0E27184E157600B7DEDF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEF0E26184E157600B7DEDF /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		61B30A9819CF827E0053C0D1 /* RFToolbarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFToolbarScrollView.h; sourceTree = "<group>"; };
+		61B30A9919CF827E0053C0D1 /* RFToolbarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFToolbarScrollView.m; sourceTree = "<group>"; };
 		CEEF0E1F184E157600B7DEDF /* RFKeyboardToolbarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFKeyboardToolbarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEEF0E22184E157600B7DEDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEEF0E24184E157600B7DEDF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				CEEF0E6E184E9AED00B7DEDF /* RFKeyboardToolbar.m */,
 				CEEF0E6F184E9AED00B7DEDF /* RFToolbarButton.h */,
 				CEEF0E70184E9AED00B7DEDF /* RFToolbarButton.m */,
+				61B30A9819CF827E0053C0D1 /* RFToolbarScrollView.h */,
+				61B30A9919CF827E0053C0D1 /* RFToolbarScrollView.m */,
 			);
 			name = RFKeyboardToolbar;
 			path = ../../RFKeyboardToolbar;
@@ -270,6 +275,7 @@
 				CEEF0E33184E157600B7DEDF /* AppDelegate.m in Sources */,
 				CEEF0E71184E9AED00B7DEDF /* RFKeyboardToolbar.m in Sources */,
 				CEEF0E2F184E157600B7DEDF /* main.m in Sources */,
+				61B30A9A19CF827E0053C0D1 /* RFToolbarScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
